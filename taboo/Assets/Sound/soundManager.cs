@@ -5,6 +5,7 @@ using UnityEngine;
 public class soundManager : MonoBehaviour
 {
     //싱글톤 디자인
+
     private static soundManager _Instance = null;
 
     public static soundManager Instance
@@ -18,12 +19,13 @@ public class soundManager : MonoBehaviour
             return _Instance;
         }
     }
-
+  
     void Awake()
     {
         _Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
+  
 
     //sfx 소스 초기화에 사용하는 배열 크기 변수값(가변)
     public int audioSourceCount = 3;

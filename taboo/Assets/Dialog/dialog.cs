@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 [System.Serializable]
 public class dialog_info
 {
@@ -52,9 +53,9 @@ public class dialog : MonoBehaviour
     }
     public IEnumerator dialog_system_start(int index)//다이얼로그 출력 시작
     {
-        nameing = dialog_obj.GetComponent<parameter>().name_text;   //다이얼로그 오브젝트에서 각 변수 받아오기
-        DialogT = dialog_obj.GetComponent<parameter>().content;
-        Next_T = dialog_obj.GetComponent<parameter>().next_text;
+        //nameing = dialog_obj.GetComponent<parameter>().name_text;   //다이얼로그 오브젝트에서 각 변수 받아오기
+        //DialogT = dialog_obj.GetComponent<parameter>().content;
+       //Next_T = dialog_obj.GetComponent<parameter>().next_text;
 
         running = true;
         foreach (dialog_info dialog_temp in dialog_cycles[index].info)  //대화 단위를 큐로 관리하기 위해 넣는다.
@@ -71,8 +72,12 @@ public class dialog : MonoBehaviour
             text_ = text_seq.Dequeue();                                  //대화 지문을 pop
             
             seq_ = seq_sentence(index, i);                               //대화 지문 출력 코루틴
-            StartCoroutine(seq_);                                        //코루틴 실행
-
+            StartCoroutine(seq_);
+            //코루틴 실행
+            if (gameObject == null)
+            {
+                StopCoroutine(seq_);
+            }
 
             yield return new WaitUntil(() =>
             {
@@ -86,10 +91,7 @@ public class dialog : MonoBehaviour
                 }
             });
         }
-
-
-                                  
-
+                              
         dialog_cycles[index].check_cycle_read = true;                   //해당 대화 그룹 읽음
         running = false;
         
@@ -111,19 +113,25 @@ public class dialog : MonoBehaviour
 
     public IEnumerator seq_sentence(int index, int number)              //지문 텍스트 한글자식 연속 출력
     {
-        skip_seq = touch_wait(seq_, index, number);                     //터치 스킵을 위한 터치 대기 코루틴 할당
-        StartCoroutine(skip_seq);                                       //터치 대기 코루틴 시작
-        DialogT.text = "";                                              //대화 지문 초기화
-        foreach (char letter in text_.ToCharArray())                    //대화 지문 한글자씩 뽑아내기
+
+            skip_seq = touch_wait(seq_, index, number);                     //터치 스킵을 위한 터치 대기 코루틴 할당
+            StartCoroutine(skip_seq);
+        //터치 대기 코루틴 시작
+        if (DialogT != null)
         {
-            DialogT.text += letter;                                     //한글자씩 출력
-            yield return new WaitForSeconds(delay);                     //출력 딜레이
+            DialogT.text = "";                                              //대화 지문 초기화
+            foreach (char letter in text_.ToCharArray())                    //대화 지문 한글자씩 뽑아내기
+            {
+                DialogT.text += letter;                                     //한글자씩 출력
+                yield return new WaitForSeconds(delay);                     //출력 딜레이
+            }
         }
-        Next_T.gameObject.SetActive(true);
-        Next_T.text = "next";
-        StopCoroutine(skip_seq);                                        //지문 출력이 끝나면 터치 대기 코루틴 해제
-        IEnumerator next = next_touch(index, number);                   //버튼 이외에 부분을 터치해도 넘어가는 코루틴 시작
-        StartCoroutine(next);
+            Next_T.gameObject.SetActive(true);
+            Next_T.text = "next";
+            StopCoroutine(skip_seq);                                        //지문 출력이 끝나면 터치 대기 코루틴 해제
+            IEnumerator next = next_touch(index, number);                   //버튼 이외에 부분을 터치해도 넘어가는 코루틴 시작
+            StartCoroutine(next);
+        
     }
 
     public IEnumerator touch_wait(IEnumerator seq, int index, int number)//터치 대기 코루틴
@@ -155,6 +163,39 @@ public class dialog : MonoBehaviour
         }
         
         return false;
+    }
+
+    public int current_dialog()
+    {
+        for (int i = 0; i < dialog_cycles.Count; i++)
+        {
+            if (dialog_read(i) && !dialog_read(i-1))
+            {
+                return i;
+            }
+            else
+            {
+                continue;
+            }
+        }
+        return 0;
+    }
+
+    public void load_dialog(int check_index)
+    {
+        for (int i = 0; i < check_index; i++)
+        {
+            dialog_cycles[i].check_cycle_read = true;
+        }
+    }
+
+    public void reset_data()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            dialog_cycles[i].check_cycle_read = false;
+            //print(i);
+        }
     }
 
 }
