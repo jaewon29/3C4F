@@ -14,6 +14,11 @@ public class Play : MonoBehaviour
     public Coroutine coPlay;
     public int checkNum;
 
+    void Start()
+    {
+        StartCo();
+    }
+
     void Awake()    //싱글톤 패턴
     {
         if (instance == null)
@@ -29,7 +34,9 @@ public class Play : MonoBehaviour
     public void StartCo()
     {
         //Corunning = false;
+        StopAllCoroutines();
         coPlay = StartCoroutine(playPrologue());
+        //dialog.instance.dialog_system_start(0);
     }
    
 
@@ -164,7 +171,6 @@ public class Play : MonoBehaviour
                         {
                             IEnumerator dialog_co = dialog.instance.dialog_system_start(i);
                             StartCoroutine(dialog_co);
-
                         }
                     }
                 }
