@@ -16,6 +16,10 @@ public class Play : MonoBehaviour
 
     void Start()
     {
+        //StartCo();
+        Time.timeScale = 1.0f;
+        //IEnumerator StartProlog = playPrologue();
+        //StartCoroutine(StartProlog);
         StartCo();
     }
 
@@ -27,7 +31,12 @@ public class Play : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+        time_text = GameObject.Find("time").GetComponent<Text>();
+        checkNum = SLManager.loadData;
+        //print(GameObject.Find("JSONManager").GetComponent<SLManager>().loadData);
+        print("Check");
+        print(checkNum);
+
     }
 
    
@@ -35,6 +44,7 @@ public class Play : MonoBehaviour
     {
         //Corunning = false;
         StopAllCoroutines();
+        
         coPlay = StartCoroutine(playPrologue());
         //dialog.instance.dialog_system_start(0);
     }
@@ -146,33 +156,23 @@ public class Play : MonoBehaviour
                     
             time = 100f;
 
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (!dialog.instance.dialog_read(j))
-                        {
-                    dialog.instance.dialog_cycles[j].check_cycle_read = true;
-                            print("Dialog read = ");
-                            print(j);//LOAD가 제대로 되었는지 확인용
-                        }
-                    }
             
             yield return new WaitUntil(() =>
             {
+               
+                
                 time -= Time.deltaTime;
-                time_text.text = time.ToString();
+                if(time_text)
+                    time_text.text = time.ToString();
 
-                for (int i = 0; i < 3; i++)
+                for (int i = checkNum; i < 3; i++)
                 {
-                    if (i < checkNum)
-                        continue;
-                    else
-                    {
                         if (dialog.instance.dialog_read(i) && !dialog.instance.running)
                         {
                             IEnumerator dialog_co = dialog.instance.dialog_system_start(i);
                             StartCoroutine(dialog_co);
                         }
-                    }
+                    
                 }
                 return false;
             });

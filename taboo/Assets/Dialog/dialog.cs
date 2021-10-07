@@ -49,10 +49,12 @@ public class dialog : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject); //코루틴을 적게 사용해보자, 싱글톤패턴도 나중에 디버깅할때 힘드니까 다시 고려해보자, scriptableObject
+       // DontDestroyOnLoad(gameObject); //코루틴을 적게 사용해보자, 싱글톤패턴도 나중에 디버깅할때 힘드니까 다시 고려해보자, scriptableObject
+        dialog_obj = GameObject.Find("Dialog");
     }
     public IEnumerator dialog_system_start(int index)//다이얼로그 출력 시작
     {
+        
         nameing = dialog_obj.GetComponent<parameter>().name_text;   //다이얼로그 오브젝트에서 각 변수 받아오기
         DialogT = dialog_obj.GetComponent<parameter>().content;
         
@@ -79,6 +81,7 @@ public class dialog : MonoBehaviour
             {
                 StopCoroutine(seq_);
             }
+
 
             yield return new WaitUntil(() =>
             {

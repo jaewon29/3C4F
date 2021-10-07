@@ -18,6 +18,8 @@ class data
 public class SLManager : MonoBehaviour
 {
     List<data> datas = new List<data>();
+    public static SLManager instance = null;
+    public static int loadData;
     //Dictionary<string, data> datas = new Dictionary<string, data>();
     //data p1 = new data(3);
     //public Text tx;
@@ -33,7 +35,7 @@ public class SLManager : MonoBehaviour
 
     public void _save()
     {
-        //datas.Add(new data(dialog.instance.current_dialog()));
+        datas.Add(new data(dialog.instance.current_dialog()));
         print(datas[0].dialogNum);
         string jdata = JsonConvert.SerializeObject(datas);
         //byte[] bytes = System.Text.Encoding.UTF8.GetBytes(jdata);
@@ -50,8 +52,8 @@ public class SLManager : MonoBehaviour
         //string reformat = System.Text.Encoding.UTF8.GetString(bytes);
         //tx.text = jdata;
         datas = JsonConvert.DeserializeObject<List<data>>(jdata);
-        //dialog.instance.load_dialog(datas[0].dialogNum-1);
-        Play.instance.checkNum = datas[0].dialogNum;
+        loadData = datas[0].dialogNum;
+        print(loadData);
         //print(datas[0].dialogNum);
     }
 }
