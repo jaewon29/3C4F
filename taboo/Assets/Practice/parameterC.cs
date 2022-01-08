@@ -5,5 +5,6 @@ using UnityEngine.UI;
 
 public class parameterC : MonoBehaviour
 {
-    public Text choice_text;
+    public Text choice1_text;
+    public Text choice2_text;
 }

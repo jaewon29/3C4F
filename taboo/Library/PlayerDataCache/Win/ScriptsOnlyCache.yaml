@@ -1,12 +1,20 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AlphaBtn
     - BGM
+    - DontDestroy
+    - MainMenu
+    - MoveMenu
     - Play
     - SLManager
     - SceneChange
+    - StartScene
+    - Volume
     - dialog
     - forDebug
+    - newDialog
+    - newPlay
     - parameter
     - soundManager
     Unity.2D.Animation.Editor.dll:
@@ -38,6 +46,57 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
+    Assets/Scenes/Option.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11272}
+    - Class: 114
+      Script: {instanceID: 11568}
+    - Class: 114
+      Script: {instanceID: 11604}
+    - Class: 114
+      Script: {instanceID: 11626}
+    - Class: 114
+      Script: {instanceID: 12062}
+    - Class: 114
+      Script: {instanceID: 12302}
+    - Class: 114
+      Script: {instanceID: 13018}
+    - Class: 114
+      Script: {instanceID: 13784}
+    - Class: 114
+      Script: {instanceID: 14406}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/SampleForLoad.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -64,17 +123,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11626}
     - Class: 114
-      Script: {instanceID: 12300}
+      Script: {instanceID: 12302}
     - Class: 114
-      Script: {instanceID: 12664}
+      Script: {instanceID: 12668}
     - Class: 114
-      Script: {instanceID: 12922}
+      Script: {instanceID: 12926}
     - Class: 114
-      Script: {instanceID: 13014}
+      Script: {instanceID: 13018}
     - Class: 114
-      Script: {instanceID: 13778}
+      Script: {instanceID: 13428}
     - Class: 114
-      Script: {instanceID: 14394}
+      Script: {instanceID: 13784}
+    - Class: 114
+      Script: {instanceID: 14294}
+    - Class: 114
+      Script: {instanceID: 14406}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -82,6 +145,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -106,8 +171,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 83
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -127,19 +190,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12030}
     - Class: 114
-      Script: {instanceID: 12300}
+      Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 12922}
+      Script: {instanceID: 12302}
     - Class: 114
-      Script: {instanceID: 13014}
+      Script: {instanceID: 12334}
     - Class: 114
-      Script: {instanceID: 13778}
+      Script: {instanceID: 12926}
     - Class: 114
-      Script: {instanceID: 14394}
+      Script: {instanceID: 13018}
     - Class: 114
-      Script: {instanceID: 14452}
+      Script: {instanceID: 13784}
     - Class: 114
-      Script: {instanceID: 14882}
+      Script: {instanceID: 13964}
+    - Class: 114
+      Script: {instanceID: 14126}
+    - Class: 114
+      Script: {instanceID: 14406}
+    - Class: 114
+      Script: {instanceID: 14464}
+    - Class: 114
+      Script: {instanceID: 20794}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -157,6 +228,39 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Start.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11492}
+    - Class: 114
+      Script: {instanceID: 12030}
+    - Class: 114
+      Script: {instanceID: 12302}
+    - Class: 114
+      Script: {instanceID: 14406}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 328
+      Script: {instanceID: 0}
+    - Class: 329
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -185,7 +289,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: f878e31a9d14848ec6dfabbb2e20e1a6
+      Hash: 88dd5b312e32b1a4e9216883c5288c19
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: parameter
@@ -209,10 +313,10 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 0ed5854c66d5823927d82bee23bcfecb
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: test
+    className: StartScene
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -239,7 +343,7 @@ ScriptsOnlyBuild:
     className: Scrollbar
   - hash:
       serializedVersion: 2
-      Hash: fd570da24937e3ddbc8f6333220ff24f
+      Hash: d4b41b30f9c2b21095fc3b1b8ce8cbb2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SceneChange
@@ -317,7 +421,7 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: 893901a7f45b19d3ee808b4dc79797bc
+      Hash: 70b8ef06f32236aec376b612b9cf0674
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: dialog
@@ -407,6 +511,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: b5fff9b4fe92e39d2a0d6ecfbe58b958
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AlphaBtn
+  - hash:
+      serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -429,6 +539,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: UnityEngine.U2D
     className: SpriteShape
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DontDestroy
   - hash:
       serializedVersion: 2
       Hash: 5cc439bf63c0539d39588e69465ac2ab
@@ -587,6 +703,12 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 8079f6b4c362e88074af523a249527b4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenu
+  - hash:
+      serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -617,6 +739,12 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: newPlay
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -627,6 +755,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: 12d16e531cc9605191282f8f267d1a6a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: newDialog
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -663,6 +797,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: BaseInput
+  - hash:
+      serializedVersion: 2
+      Hash: bd45303b939c1a2172d70a0a8e38461a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MoveMenu
   - hash:
       serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
@@ -743,6 +883,8 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 5
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/Start.unity
   - Assets/Scenes/SampleForLoad.unity
+  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/Option.unity
   playerPath: C:/Users/MM/Desktop/3C4F/WorkSpace/taboo/taboo.exe
