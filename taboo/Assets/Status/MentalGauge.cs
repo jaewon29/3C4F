@@ -33,11 +33,14 @@ public class MentalGauge : MonoBehaviour
     public void MentalGaugeChange(float num) //멘탈게이지를 num만큼 변경
     {
         playerGauge += num;
+        print(playerGauge);
+        /**
         if (playerGauge > 100f) //100 이상일땐 100으로 고정
         {
             playerGauge = 100f;
         }
-        else if (playerGauge < 0f) //0 이하일땐 0으로 고정
+        **/
+        if (playerGauge < 0f) //0 이하일땐 0으로 고정
         {
             playerGauge = 0f;
         }

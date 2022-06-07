@@ -13,6 +13,9 @@ public class Play : MonoBehaviour
     private bool Corunning;
     public Coroutine coPlay;
     public int checkNum;
+    public Item[] ItemArr;
+
+    
 
     void Start()
     {
@@ -55,98 +58,7 @@ public class Play : MonoBehaviour
         //Corunning = true;
         StopCoroutine(coPlay);
     }
-    /*
-    public IEnumerator playPrologue()
-    {
-        while (!Corunning)
-        {
-            yield return new WaitUntil(() =>
-            {
-                if (!dialog.instance.dialog_read(3))
-                {
-                    return true;
-                }
-                else
-                {
-                    print(checkNum);
-                    time -= Time.deltaTime;
-                    time_text.text = time.ToString(); // 코루틴 실행 진입 포인트 확인용
-
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (!dialog.instance.dialog_read(j))
-                        {
-                            print("Dialog read = ");
-                            print(j);//LOAD가 제대로 되었는지 확인용
-                        }
-                    }
-
-                    for (int i = checkNum; i < 3; i++)
-                    {
-                        if (dialog.instance.dialog_read(i) && !dialog.instance.running)
-                        {
-                            IEnumerator dialog_co = dialog.instance.dialog_system_start(i);
-                            StartCoroutine(dialog_co);
-
-                            if (dialog.instance.dialog_read(i))
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                    /**
-                    if (dialog.instance.dialog_read(0) && !dialog.instance.running)
-                    {
-                        IEnumerator dialog_co = dialog.instance.dialog_system_start(0);
-                        StartCoroutine(dialog_co);
-
-                        if (dialog.instance.dialog_read(0))
-                        {
-                            return false;
-                        }
-                    }
-
-                    else if (dialog.instance.dialog_read(1) && !dialog.instance.running)
-                    {
-                        IEnumerator dialog_co = dialog.instance.dialog_system_start(1);
-                        StartCoroutine(dialog_co);
-
-                        if (dialog.instance.dialog_read(1))
-                        {
-                            return false;
-                        }
-                    }
-
-                    else if (dialog.instance.dialog_read(2) && !dialog.instance.running)
-                    {
-                        IEnumerator dialog_co = dialog.instance.dialog_system_start(2);
-                        StartCoroutine(dialog_co);
-
-                        if (dialog.instance.dialog_read(2))
-                        {
-                            return false;
-                        }
-                    }
-
-                    else if (dialog.instance.dialog_read(3) && !dialog.instance.running)
-                    {
-                        IEnumerator dialog_co = dialog.instance.dialog_system_start(3);
-                        StartCoroutine(dialog_co);
-
-                        if (dialog.instance.dialog_read(3))
-                        {
-                            return false;
-                        }
-                    }
-                    
-                    return false;
-                    
-                }
-
-            });
-        }
-    }
-    */
+    
 
     public IEnumerator playPrologue()
     {
@@ -174,6 +86,42 @@ public class Play : MonoBehaviour
                         }
                     
                 }
+                if (!dialog.instance.dialog_read(2))
+                {
+                    IEnumerator selection_co = selection.instance.selection_system_start(0);
+                    StartCoroutine(selection_co);
+
+                    if (selection.way == 1)
+                    {
+                        selection.way = 0;
+                        MentalGauge.Instance.MentalGaugeChange(-10f);
+                        Inventory.Instance.AddItem(ItemArr[0]);
+                        StopCoroutine(selection_co);
+                        IEnumerator dialog_co = dialog.instance.dialog_system_start(3);
+                        StartCoroutine(dialog_co);
+                        if (dialog.instance.dialog_read(3))
+                        {
+                            return false;
+                        }
+                        
+                    }
+
+                    else if(selection.way == 2)
+                    {
+                        selection.way = 0;
+                        MoodPointManage.MoodPointChange(0, 1);
+                        print(MoodPointManage.MoodPointArr[0]);
+                        place.Instance.changePlace("BackGround2");
+                        StopCoroutine(selection_co);
+                        IEnumerator dialog_co = dialog.instance.dialog_system_start(4);
+                        StartCoroutine(dialog_co);
+                        if (dialog.instance.dialog_read(4))
+                        {
+                            return false;
+                        }
+                    }
+                }
+
                 return false;
             });
                     
